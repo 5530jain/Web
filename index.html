@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검강화 게임</title>
+    <link rel = "stylesheet" href="style.css">
+</head>
+<body>
+    <!--로그인, 상점, 골드-->
+    <div id = "LSG">
+        <div class="left" id="loginButton">로그인</div>
+        <div class="center">상점</div>
+        <div class="right">골드: 100</div>
+    </div>
+    <!-- 로그인-->
+    <div id="loginForm" style="display: none;">
+        <input type="text" id="inputID" placeholder="아이디"><br>
+        <input type="password"id="inputPW" placeholder="비밀번호"><br>
+        <button onclick="login()">로그인</button>
+        <button onclick="showRegisterForm()">회원가입</button>
+    </div>
+    <!-- (로그인)_회원가입-->
+    <div id="registerForm" style="display: none;">
+        <input type="text" id="signupID" placeholder="아이디"><br>
+        <input type="password" id="signupPW" placeholder="비밀번호"><br>
+        <button onclick="register()">회원가입</button>
+    </div>
+    <div id = "main">
+        <div class="image-container">
+            <img src="img/sword1.png" alt="Your Image">
+            
+        </div>
+        <div class="button-container">
+            <button id="upgradeButton" onclick="upgradeSword()">강화</button>
+            <button id="sellButton">판매</button>
+            <div id="msg"></div>
+
+        </div>
+    </div>
+    <div id = "materials">
+        구역3
+    </div>
+    <script src="script.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,54 @@
+#LSG{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+#LSG .left,
+#LSG .center,
+#LSG .right {
+    padding: 8px 12px;
+    border: 1px solid #999;
+    cursor: pointer;
+}
+
+#main {
+    width: auto;
+    height: 400px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+.image-container {
+    margin-bottom: 20px; /* 이미지 아래 여백 추가 */
+}
+
+.image-container img {
+    width: 300px; /* 이미지를 컨테이너에 맞게 조정 */
+    height: 300px;
+}
+
+.button-container {
+    display: flex; /* 버튼을 수평으로 나란히 배치하기 위해 Flexbox 사용 */
+    justify-content: center; /* 가운데 정렬 */
+    gap: 10px; /* 버튼 사이 간격 설정 */
+}
+
+.button-container button {
+    margin: 0 10px; /* 버튼 사이의 간격 조정 */
+    padding: 8px 16px; /* 버튼 내부 여백 설정 */
+    /* 추가적인 버튼 스타일링 */
+}
+#materials{
+    width: auto;
+    height: 200px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    margin: 0 auto;
+    padding: 0px;
+}
