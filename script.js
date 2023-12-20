@@ -58,17 +58,14 @@ function register() {
 //업그레이드 부분 
 
 function upgradeSword() {
-    // 업그레이드 확률 설정 (예: 30% 확률로 업그레이드)
-    var upgradeChance = Math.random() * 100; // 0 ~ 100 사이의 난수 생성
-    var successRate = 90; // 업그레이드 성공 확률 설정
-
+    var upgradeChance = Math.random() * 100; 
+    var successRate = 90; 
+    
     if (upgradeChance < successRate) {
-        // 업그레이드 성공 시 동작
         document.querySelecor('#msg').innerHTML = "강화 성공!";
-        // 여기에 업그레이드 성공 시 추가적인 작업을 추가하세요.
+       
     } else {
-        // 업그레이드 실패 시 동작
         document.querySelecor('#msg').innerHTML = "강화 실패!";
-        // 여기에 업그레이드 실패 시 추가적인 작업을 추가하세요.
+       
     }
 }
