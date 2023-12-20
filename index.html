@@ -11,7 +11,7 @@
     <div id = "LSG">
         <div class="left" id="loginButton">로그인</div>
         <div class="center">상점</div>
-        <div class="right">골드: 100</div>
+        <div class="right" id="showGold">G: </div>
     </div>
     <!-- 로그인-->
     <div id="loginForm" style="display: none;">
@@ -28,15 +28,17 @@
     </div>
     <div id = "main">
         <div class="image-container">
-            <img src="img/sword1.png" alt="Your Image">
-            
+            <img src="img/sword1.png" alt="Sword" id="SwordImg">
         </div>
+        <div id="Upcost">강화 비용: 100G</div>
+        <div id="ShowSell">판매가: 0G</div>
+        <div id="ShowRate">성공률: 95%</div>
         <div class="button-container">
             <button id="upgradeButton" onclick="upgradeSword()">강화</button>
-            <button id="sellButton">판매</button>
-            <div id="msg"></div>
-
+            <button id="sellButton" onclick="sellSword()">판매</button>
         </div>
+        <div id="msg"></div>
+        
     </div>
     <div id = "materials">
         구역3

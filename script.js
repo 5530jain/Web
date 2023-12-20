@@ -1,4 +1,5 @@
 
+
 //로그인, 회원가입 
 document.getElementById('loginButton').addEventListener('click', showLoginForm);
 document.getElementById('loginButton').addEventListener('click', login);
@@ -55,17 +56,99 @@ function register() {
     loginForm.style.display = 'block';
 }
 
-//업그레이드 부분 
+//업그레이드 /판매 부분 / 돈
+var SwordImges = [
+    'img/sword1.png',
+    'img/sword2.png',
+    'img/sword3.png',
+    'img/sword4.png',
+    'img/sword5.png',
+    'img/sword6.png',
+    'img/sword7.png',
+    'img/sword8.png',
+    'img/sword9.png'
+]
+
+var sellSp = 1;
+var SwordCount = 0;
+var successRate = 95; 
+var cost = 100;
+var globalGold = 1000;
+
+function displayGold(){
+    var showGold = document.getElementById('showGold');
+    showGold.innerHTML = 'G: '+ globalGold;
+}
+
+function displaySell(){
+    var ShowSell = document.getElementById('ShowSell');
+     ShowSell.innerHTML = '판매가:' + sellSp+ 'G';
+}
+function displayCost(){
+    var Upcost = document.getElementById('Upcost');
+    Upcost.innerHTML = "강화 비용:"+ cost +"G";
+}
 
 function upgradeSword() {
-    var upgradeChance = Math.random() * 100; 
-    var successRate = 90; 
+    var upgradeChance = Math.random() * 100;
+    var minusRate = 10;
     
-    if (upgradeChance < successRate) {
-        document.querySelecor('#msg').innerHTML = "강화 성공!";
+
+    var upgrademsg = document.getElementById('msg');
+    var ShowRate = document.getElementById('ShowRate');
+    var SwordImg = document.getElementById('SwordImg');
+    
+    if(SwordCount === SwordImges.length-1) {
+        alert('최대 강화입니다! 축하드립니다!');
+    }   
+    else if(globalGold >= cost){
        
-    } else {
-        document.querySelecor('#msg').innerHTML = "강화 실패!";
-       
+        if (upgradeChance < successRate) {
+            globalGold -= cost;
+            SwordCount = (SwordCount+1)%SwordImges.length;
+            SwordImg.src = SwordImges[SwordCount];
+            cost += 100;
+            upgrademsg.innerHTML = '강화 성공!';
+            successRate -= minusRate;
+            ShowRate.innerHTML = '성공률: '+ successRate + '%';
+            sellSp =+ sellSp*10;
+            
+            displayCost();
+            displayGold();
+            displaySell();
+        } 
+        else {
+            SwordCount = 0;
+            SwordImg.src = SwordImges[SwordCount];
+            upgrademsg.innerHTML = '강화 실패!';
+            successRate = 95;
+            ShowRate.innerHTML = '성공률: '+ successRate + '%';
+            sellSp = 1;
+            globalGold -= cost;
+            cost = 100;
+            displayGold();
+            displaySell();
+            displayCost();
+        }
+    }
+    else{
+        alert('강화 비용이 부족합니다!');
     }
 }
+function sellSword(){
+    globalGold += sellSp;
+    cost = 100;
+    SwordCount = 0;
+    SwordImg.src = SwordImges[SwordCount];
+    successRate = 95;
+    ShowRate.innerHTML = '성공률: '+ successRate + '%';
+    sellSp = 1;
+    displaySell();
+    displayGold();
+    displayCost();
+    
+}
+
+displaySell();
+displayGold();
+displayCost();
