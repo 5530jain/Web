@@ -93,7 +93,7 @@ function buyItem(itemId, price) {
         itemButton.textContent = '구매 완료';
         var loginUser = localStorage.getItem('loginUser');
         localStorage.setItem(loginUser + '_itemPurchased_' + itemId, 'purchased');
-        localStorage.setItem('gameDataGold', globalGold); // 전역 골드 정보 업데이트
+        localStorage.setItem('gameDataGold', globalGold); 
 
     } else if (images[itemId - 1].style.display !== 'none') {
         alert('이미 구매한 아이템입니다.');
