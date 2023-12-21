@@ -2,12 +2,6 @@
 
 //로그인, 회원가입 
 document.getElementById('loginButton').addEventListener('click', showLoginForm);
-document.getElementById('loginButton').addEventListener('click', login);
-
-// function showLoginForm() {
-//     var loginForm = document.getElementById('loginForm');
-//     loginForm.style.display = 'block';
-// }
 function showLoginForm() {
     var loginForm = document.getElementById('loginForm');
     if (loginForm.style.display === 'block') {
@@ -27,6 +21,17 @@ function login() {
 
     if (inputID === registeredID && inputPW === registeredPW) {
         alert('로그인 되었습니다.');
+
+        localStorage.setItem('loginUser',inputID);
+        var savedGold = localStorage.getItem('gameDataGold');
+        if (savedGold !== null) {
+            globalGold = parseInt(savedGold);
+            displayGold();
+        }
+        var userId = inputID;
+        restorePurchasedItems(userId);
+        var loginForm = document.getElementById('loginForm');
+        loginForm.style.display = 'none';
     } else {
         alert('아이디 또는 비밀번호가 올바르지 않습니다');
     }
@@ -56,7 +61,62 @@ function register() {
     loginForm.style.display = 'block';
 }
 
-//업그레이드 /판매 부분 / 돈
+//저장 
+function Save(){
+    localStorage.setItem('gameDataGold', globalGold);
+    alert('저장 성공!');
+}
+window.addEventListener('beforeunload', function(event) {
+    localStorage.setItem('gameDataGold', globalGold);
+    //localStorage.removeItem('gameDataGold');
+});
+
+//상점
+document.getElementById('shopButton').addEventListener('click', function() {
+    document.getElementById('shop').style.display = 'block';
+});
+function closeShop() {
+    document.getElementById('shop').style.display = 'none';
+}
+
+//구매
+function buyItem(itemId, price) {
+    var itemImages = document.getElementById('itemImages');
+    var images = itemImages.getElementsByTagName('img');
+    var itemButton = document.querySelectorAll('.item-grid button')[itemId - 1]; 
+
+    if (globalGold >= price && images[itemId - 1].style.display === 'none') {
+        images[itemId - 1].style.display = 'inline-block'; 
+        globalGold -= price;
+        displayGold();
+        itemButton.disabled = true;
+        itemButton.textContent = '구매 완료';
+        var loginUser = localStorage.getItem('loginUser');
+        localStorage.setItem(loginUser + '_itemPurchased_' + itemId, 'purchased');
+        localStorage.setItem('gameDataGold', globalGold); // 전역 골드 정보 업데이트
+
+    } else if (images[itemId - 1].style.display !== 'none') {
+        alert('이미 구매한 아이템입니다.');
+    } else {
+        alert('돈이 부족합니다.');
+    }
+}
+function restorePurchasedItems(userId) {
+    for (var i = 1; i <= 6; i++) {
+        var itemImages = document.getElementById('itemImages');
+        var images = itemImages.getElementsByTagName('img');
+        var itemButton = document.querySelectorAll('.item-grid button')[i - 1];
+
+        var purchasedItem = localStorage.getItem(userId + '_itemPurchased_' + i);
+
+        if (purchasedItem === 'purchased') {
+            images[i - 1].style.display = 'inline-block';
+            itemButton.disabled = true;
+            itemButton.textContent = '구매 완료';
+        }
+    }
+}
+//업그레이드 /판매 / 돈
 var SwordImges = [
     'img/sword1.png',
     'img/sword2.png',
@@ -73,7 +133,6 @@ var sellSp = 1;
 var SwordCount = 0;
 var successRate = 95; 
 var cost = 100;
-var globalGold = 1000;
 
 function displayGold(){
     var showGold = document.getElementById('showGold');
@@ -102,7 +161,6 @@ function upgradeSword() {
         alert('최대 강화입니다! 축하드립니다!');
     }   
     else if(globalGold >= cost){
-       
         if (upgradeChance < successRate) {
             globalGold -= cost;
             SwordCount = (SwordCount+1)%SwordImges.length;

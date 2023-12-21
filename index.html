@@ -10,9 +10,25 @@
     <!--로그인, 상점, 골드-->
     <div id = "LSG">
         <div class="left" id="loginButton">로그인</div>
-        <div class="center">상점</div>
+        <div class="center" id="shopButton" >상점</div>
         <div class="right" id="showGold">G: </div>
     </div>
+    <!-- 상점 창 -->
+    <div id="shop" style="display: none;">
+       
+        <h2>상점</h2>
+        <ul class="item-grid">
+            <li>원시 대장장이 칭호 - 가격: 1000G <button onclick="buyItem(1, 1000)">구매</button></li>
+            <li>신입 대장장이 칭호 - 가격: 10000G <button onclick="buyItem(2, 10000)">구매</button></li>
+            <li>견습 대장장이 칭호  - 가격: 100000G <button onclick="buyItem(3, 100000)">구매</button></li>
+            <li>장인 대장장이 칭호 - 가격: 1000000G <button onclick="buyItem(4, 1000000)">구매</button></li>
+            <li>대가 대장장이 칭호 5 - 가격: 10000000G <button onclick="buyItem(5, 10000000)">구매</button></li>
+            <li>신화 대장장이 칭호 - 가격: 100000000G <button onclick="buyItem(6, 100000000)">구매</button></li>
+            
+        </ul>
+        <button onclick="closeShop()">닫기</button>
+    </div>
+
     <!-- 로그인-->
     <div id="loginForm" style="display: none;">
         <input type="text" id="inputID" placeholder="아이디"><br>
@@ -28,6 +44,7 @@
     </div>
     <div id = "main">
         <div class="image-container">
+            <button class="save_button" onclick="Save()">저장하기</button>
             <img src="img/sword1.png" alt="Sword" id="SwordImg">
         </div>
         <div id="Upcost">강화 비용: 100G</div>
@@ -41,8 +58,18 @@
         
     </div>
     <div id = "materials">
-        구역3
+        <div class="image-container1" id="itemImages" >
+            <img src="img/item1.png" alt="이미지 1"style="display: none;">
+            <img src="img/item2.png" alt="이미지 2"style="display: none;">
+            <img src="img/item3.png" alt="이미지 3"style="display: none;">
+            <img src="img/item4.png" alt="이미지 4"style="display: none;">
+            <img src="img/item5.png" alt="이미지 5"style="display: none;">
+            <img src="img/item6.png" alt="이미지 6"style="display: none;">
+        </div>
     </div>
+    <script>
+        var globalGold = 2000;
+    </script>
     <script src="script.js"></script>
     
 </body>
